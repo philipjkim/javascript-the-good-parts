@@ -10,7 +10,7 @@ var stooge = {
 };
 
 var flight = {
-  airline: "Jin Air",
+  airline: "Korean Air",
   number: 815,
   departure: {
     IATA: "GMP",
@@ -76,3 +76,70 @@ console.log(a === b);
 a = b = c = {};
 console.log(a === b);
 
+// 3.5. Prototype
+
+if (typeof Object.beget !== "function") {
+  Object.beget = function (o) {
+    var F = function () {};
+    F.prototype = o;
+    return new F();
+  };
+}
+var another_stooge = Object.beget(stooge);
+another_stooge.first_name = "Robert";
+another_stooge.middle_name = "Cecil";
+another_stooge.nickname = "Uncle Bob";
+console.log(another_stooge);
+console.log(stooge);
+stooge.profession = "destructor";
+console.log(another_stooge.profession);
+
+// 3.6. Reflection
+
+console.log(typeof flight.number);
+console.log(typeof flight.status);
+console.log(typeof flight.arrival);
+console.log(typeof flight.manifest);
+console.log(typeof flight.toString);
+console.log(typeof flight.constructor);
+console.log(flight.hasOwnProperty("number"));
+console.log(flight.hasOwnProperty("constructor"));
+
+// 3.7. Enumeration
+
+var name;
+for (name in another_stooge) {
+  if (typeof another_stooge[name] !== "function") {
+    console.log("%s: %s", name, another_stooge[name]);
+  }
+}
+
+// 3.8. Delete
+
+console.log(another_stooge.nickname);
+delete another_stooge.nickname;
+console.log(another_stooge.nickname);
+
+// 3.9. Global Abatement
+
+var MYAPP = {};
+MYAPP.stooge = {
+  first_name: "Rosa",
+  last_name: "Park"
+};
+MYAPP.flight = {
+  airline: "Asiana Air",
+  number: 816,
+  departure: {
+    IATA: "GMP",
+    time: "2012-07-15 12:15",
+    city: "Gimpo"
+  },
+  arrival: {
+    IATA: "CJU",
+    time: "2012-07-16 10:45",
+    city: "Jeju"
+  }
+};
+console.log(flight);
+console.log(MYAPP.flight);
