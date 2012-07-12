@@ -22,7 +22,7 @@ var flight = {
   }
 };
 
-exports['retrieval'] = function(test){
+exports.retrieval = function(test){
   test.same(stooge.first_name, 'Soo');
   test.same(flight.departure.IATA, 'GMP');
 
@@ -30,8 +30,8 @@ exports['retrieval'] = function(test){
   test.same(stooge.FIRST_NAME, undefined);
   test.same(flight.status, undefined);
 
-  var middle = stooge.middle_name || "(none)";
-  var status = flight.status || "unknown";
+  var middle = stooge.middle_name || "(none)",
+      status = flight.status || "unknown";
   test.same(middle, "(none)");
   test.same(status, "unknown");
 
@@ -46,7 +46,7 @@ exports['retrieval'] = function(test){
   test.done();
 };
 
-exports['update'] = function(test){
+exports.update = function(test){
   stooge.first_name = "Sol";
   test.same(stooge.first_name, "Sol");
 
@@ -63,16 +63,12 @@ exports['update'] = function(test){
   test.done();
 };
 
-exports['reference'] = function(test){
-  var x = stooge;
+exports.reference = function(test){
+  var x = stooge, a = {}, b = {}, c = {};
   x.nickname = "Curly";
   test.same(stooge.nickname, "Curly");
-
-  var a = {}, b = {}, c = {};
-  test.ok(a != b);
   test.ok(a !== b);
   a = b = c = {};
-  test.ok(a == b);
   test.ok(a === b);
   test.done();
 };
@@ -86,19 +82,19 @@ if (typeof Object.beget !== "function") {
 }
 var another_stooge = Object.beget(stooge);
 
-exports['prototype'] = function(test){
+exports.prototypes = function(test){
   another_stooge.first_name = "Robert";
   another_stooge.middle_name = "Cecil";
   another_stooge.nickname = "Uncle Bob";
-  test.ok(another_stooge.first_name != stooge.first_name);
-  test.ok(another_stooge.middle_name != stooge.middle_name);
-  test.ok(another_stooge.nickname != stooge.nickname);
+  test.ok(another_stooge.first_name !== stooge.first_name);
+  test.ok(another_stooge.middle_name !== stooge.middle_name);
+  test.ok(another_stooge.nickname !== stooge.nickname);
   stooge.profession = "destructor";
-  test.ok(another_stooge.profession == stooge.profession);
+  test.ok(another_stooge.profession === stooge.profession);
   test.done();
 };
 
-exports['reflection'] = function(test){
+exports.reflection = function(test){
   test.same(typeof flight.number, "number");
   test.same(typeof flight.status, "string");
   test.same(typeof flight.arrival, "object");
@@ -110,7 +106,7 @@ exports['reflection'] = function(test){
   test.done();
 };
 
-exports['enumeration'] = function(test){
+exports.enumeration = function(test){
   var name;
   for (name in another_stooge) {
     if (typeof another_stooge[name] !== "function") {
@@ -120,7 +116,7 @@ exports['enumeration'] = function(test){
   test.done();
 };
 
-exports['delete'] = function(test){
+exports.delete = function(test){
   test.same(another_stooge.nickname, "Uncle Bob");
   delete another_stooge.nickname;
   test.same(another_stooge.nickname, "Curly");
@@ -147,7 +143,7 @@ MYAPP.flight = {
   }
 };
 
-exports['global abatement'] = function(test){
+exports.globalAbatement = function(test){
   test.ok(flight.airline !== MYAPP.flight.airline);
   test.done();
 };

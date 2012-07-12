@@ -25,9 +25,7 @@ exports['method invocation pattern'] = function(test){
 };
 
 myObject.double = function(){
-  var that = this;
-
-  var helper = function(){
+  var that = this, helper = function(){
     that.value = add(that.value, that.value);
   };
 
@@ -55,15 +53,14 @@ exports['constructor invocation pattern'] = function(test){
 };
 
 exports['apply invocation pattern'] = function(test){
-  var array = [3, 4];
-  var sum = add.apply(null, array);
+  var array = [3, 4],
+      sum = add.apply(null, array),
+      statusObject = {
+        status: "A-OK"
+      },
+      status = Quo.prototype.get_status.apply(statusObject);
+
   test.same(sum, 7);
-
-  var statusObject = {
-    status: "A-OK"
-  };
-
-  var status = Quo.prototype.get_status.apply(statusObject);
   test.same(status, "A-OK");
   test.done();
 };
@@ -86,10 +83,10 @@ var add2 = function(a, b){
     throw {
       name: "TypeError",
       message: "add2 needs numbers"
-    }
+    };
   }
   return a + b;
-}
+};
 
 var try_it = function(){
   try {
@@ -100,7 +97,7 @@ var try_it = function(){
   }
 };
 
-exports['exceptions'] = function(test){
+exports.exceptions = function(test){
   var result = try_it();
   test.same(result, "TypeError: add2 needs numbers");
   test.done();
