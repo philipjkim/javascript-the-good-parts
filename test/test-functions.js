@@ -67,3 +67,41 @@ exports['apply invocation pattern'] = function(test){
   test.same(status, "A-OK");
   test.done();
 };
+
+var sum = function(){
+  var i, sum = 0;
+  for (i = 0; i < arguments.length; i += 1) {
+    sum += arguments[i];
+  }
+  return sum;
+};
+
+exports['arguments'] = function(test){
+  test.same(sum(4, 8, 15, 16, 23, 42), 108);
+  test.done();
+};
+
+var add2 = function(a, b){
+  if (typeof a !== "number" || typeof b !== "number") {
+    throw {
+      name: "TypeError",
+      message: "add2 needs numbers"
+    }
+  }
+  return a + b;
+}
+
+var try_it = function(){
+  try {
+    add2("seven");
+    return "failed";
+  } catch (e) {
+    return e.name + ": " + e.message;
+  }
+};
+
+exports['exceptions'] = function(test){
+  var result = try_it();
+  test.same(result, "TypeError: add2 needs numbers");
+  test.done();
+};
