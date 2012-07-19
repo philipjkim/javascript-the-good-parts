@@ -1,4 +1,6 @@
 Function.prototype.method = function (name, func) {
-  this.prototype[name] = func;
+  if (!this.prototype[name]) {
+    this.prototype[name] = func;
+  }
   return this;
 };

@@ -4,7 +4,8 @@
   "private": false,
   "dependencies": {
     "nodelint": "*",
-    "nodeunit": "*"
+    "nodeunit": "*",
+    "underscore.string": "*"
   },
   "repository": {
     "type": "git",
