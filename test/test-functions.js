@@ -177,3 +177,17 @@ exports.scope = function(test){
   };
   test.done();
 };
+
+exports.closure = function(test){
+  var quo = function(status){
+    return {
+      get_status: function(){
+        return status;
+      }
+    };
+  };
+  var myQuo = quo("amazed");
+  test.same(myQuo.get_status(), "amazed");
+  test.done();
+};
+
