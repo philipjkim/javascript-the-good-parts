@@ -185,9 +185,48 @@ exports.closure = function(test){
         return status;
       }
     };
-  };
-  var myQuo = quo("amazed");
+  }, myQuo = quo("amazed");
   test.same(myQuo.get_status(), "amazed");
   test.done();
 };
 
+exports.module = function(test){
+  String.method('deentityfy', (function(){
+    var entity = {
+      quot: '"',
+      lt: '<',
+      gt: '>'
+    };
+    return function(){
+      return this.replace(/&([^&;]+);/g,
+        function(a, b){
+          var r = entity[b];
+          return typeof r === 'string' ? r : a;
+        }
+      );
+    };
+  }())); 
+  test.same('&lt;value=&quot;unknown&quot;&gt;'.deentityfy(),
+            '<value="unknown">');
+
+  var serialMaker = (function(){
+    var prefix = '', seq = 0;
+    return {
+      setPrefix: function(p){
+        prefix = String(p);
+      },
+      setSeq: function(s){
+        seq = s;
+      },
+      generate: function(){
+        var result = prefix + seq;
+        seq += 1;
+        return result;
+      }
+    };
+  }());
+  serialMaker.setPrefix('Q');
+  serialMaker.setSeq(1000);
+  test.same(serialMaker.generate(), "Q1000");
+  test.done();
+};
