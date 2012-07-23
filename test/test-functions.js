@@ -230,3 +230,54 @@ exports.module = function(test){
   test.same(serialMaker.generate(), "Q1000");
   test.done();
 };
+
+exports.curry = function(test){
+  Function.method('curry', function(){
+    var slice = Array.prototype.slice,
+        args = slice.apply(arguments),
+        that = this;
+    return function(){
+      return that.apply(null, args.concat(slice.apply(arguments)));
+    };
+  });
+  var add1 = add.curry(1);
+  test.same(add1(6), 7);
+  test.done();
+};
+
+exports.memoization = function(test){
+  var called = 0,
+      i = 0,
+      expected = [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ],
+      fibonacci = function(n){
+        called += 1;
+        return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+      },
+      memoizer = function(memo, fundamental){
+        var shell = function(n){
+          called += 1;
+          var result = memo[n];
+          if (typeof result !== 'number'){
+            result = fundamental(shell, n);
+            memo[n] = result;
+          }
+          return result;
+        };
+        return shell;
+      },
+      fibonacciMemoized = memoizer([0, 1], function(shell, n){
+        return shell(n - 1) + shell(n - 2);
+      });
+
+  for (i = 0; i <= 10; i += 1){
+    test.same(fibonacci(i), expected[i]);
+  }
+  test.same(called, 453);
+
+  called = 0;
+  for (i = 0; i <= 10; i += 1){
+    test.same(fibonacciMemoized(i), expected[i]);
+  }
+  test.same(called, 29);
+  test.done();
+};
