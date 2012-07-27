@@ -157,7 +157,7 @@ exports.recursion = function(test){
 
 exports.scope = function(test){
   var foo = function(){
-    var a = 3, b = 5, bar = function(){
+    var a = 3, b = 5, c = 0, bar = function(){
       var b = 7, c = 11;
       test.same(a, 3);
       test.same(b, 7);
@@ -169,11 +169,11 @@ exports.scope = function(test){
     };
     test.same(a, 3);
     test.same(b, 5);
-    test.same(c, undefined);
+    test.same(c, 0);
     bar();
     test.same(a, 21);
     test.same(b, 5);
-    test.same(c, undefined);
+    test.same(c, 0);
   };
   test.done();
 };
