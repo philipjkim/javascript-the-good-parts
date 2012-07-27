@@ -11,3 +11,5 @@ Run `jake`.
 
 * [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
 * [Nodeunit](https://github.com/caolan/nodeunit/)
+* [Nodelint](https://github.com/tav/nodelint)
+* [JSLint options](http://www.jslint.com/lint.html#options)
