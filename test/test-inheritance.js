@@ -1,6 +1,8 @@
 // followed felixge's Node.js style guide.
 // Refer to https://github.com/felixge/node-style-guide
 
+require('../method');
+
 exports.pseudoclassical = function(test) {
   var Mammal = function(name) {
     this.name = name;
@@ -14,5 +16,59 @@ exports.pseudoclassical = function(test) {
 
   var myMammal = new Mammal('Herb the Mammal');
   test.same(myMammal.getName(), 'Herb the Mammal');
+
+  var Cat = function(name){
+    this.name = name;
+    this.saying = 'meow';
+  };
+  Cat.prototype = new Mammal();
+  Cat.prototype.purr = function(n){
+    var i = '';
+    var s = '';
+    for (i = 0; i < n; i += 1){
+      if (s) {
+        s += '-';
+      }
+      s += 'r';
+    }
+    return s;
+  };
+  Cat.prototype.getName = function(){
+    return this.says() + ' ' + this.name + ' ' + this.says();
+  };
+
+  var myCat = new Cat('Henrietta');
+  test.same(myCat.says(), 'meow');
+  test.same(myCat.purr(5), 'r-r-r-r-r');
+  test.same(myCat.getName(), 'meow Henrietta meow');
+
+  Function.method('inherits', function(Parent){
+    this.prototype = new Parent();
+    return this;
+  });
+  var NewCat = function(name){
+    this.name = name;
+    this.saying = 'meow';
+  }.
+    inherits(Mammal).
+    method('purr', function(n){
+      var i = '';
+      var s = '';
+      for (i = 0; i < n; i += 1){
+        if (s) {
+          s += '-';
+        }
+        s += 'l';
+      }
+      return s;
+    }).
+    method('getName', function(){
+      return this.says() + ' ' + this.name + ' ' + this.says();
+    });
+
+  var myNewCat = new NewCat('Turkish Angora');
+  test.same(myNewCat.says(), 'meow');
+  test.same(myNewCat.purr(5), 'l-l-l-l-l');
+  test.same(myNewCat.getName(), 'Turkish Angora'); // TODO valid assertion?
   test.done();
 };

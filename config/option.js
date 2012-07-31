@@ -1,3 +1,4 @@
 var options = {
-  vars: true
+  vars: true,
+  node: true
 };
