@@ -49,9 +49,9 @@ exports.pseudoclassical = function(test) {
   var NewCat = function(name){
     this.name = name;
     this.saying = 'meow';
-  }.
-    inherits(Mammal).
-    method('purr', function(n){
+  };
+  NewCat.inherits(Mammal);
+  NewCat.method('purr', function(n){
       var i = '';
       var s = '';
       for (i = 0; i < n; i += 1){
@@ -61,8 +61,8 @@ exports.pseudoclassical = function(test) {
         s += 'l';
       }
       return s;
-    }).
-    method('getName', function(){
+    });
+    NewCat.method('getName', function(){
       return this.says() + ' ' + this.name + ' ' + this.says();
     });
 
