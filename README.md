@@ -5,7 +5,10 @@ Unit tests using sample codes from JavaScript: the Good Parts
 
 ## Usage
 
-Run `jake`.
+    $ git clone git://github.com/philipjkim/javascript-the-good-parts.git
+    $ cd javascript-the-good-parts
+    $ npm install
+    $ jake
 
 ## References
 
