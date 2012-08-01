@@ -1,4 +1,4 @@
-require('../method');
+require('../common');
 var _ = require('underscore.string');
 
 var add = function(a, b){

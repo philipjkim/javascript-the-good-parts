@@ -1,4 +1,4 @@
-require('../method');
+require('../common');
 
 var empty_object = {};
 
@@ -73,13 +73,6 @@ exports.reference = function(test){
   test.done();
 };
 
-if (typeof Object.beget !== "function") {
-  Object.beget = function (o) {
-    var F = function () {};
-    F.prototype = o;
-    return new F();
-  };
-}
 var another_stooge = Object.beget(stooge);
 
 exports.prototypes = function(test){
