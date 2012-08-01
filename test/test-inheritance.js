@@ -103,3 +103,54 @@ exports.prototypal = function(test){
   test.same(myCat.getName(), 'meow Henrietta meow');
   test.done();
 };
+
+exports.functional = function(test){
+  var mammal = function(spec){
+    var that = {};
+    that.getName = function(){
+      return spec.name;
+    };
+    that.says = function(){
+      return spec.saying || '';
+    };
+    return that;
+  };
+  var myMammal = mammal({name: 'Herb'});
+  test.same(myMammal.getName(), 'Herb');
+  test.same(myMammal.says(), '');
+
+  var cat = function(spec){
+    spec.saying = spec.saying || 'meow';
+    var that = mammal(spec);
+    that.purr = function(n){
+      var i = '';
+      var s = '';
+      for (i = 0; i < n; i += 1){
+        if (s) {
+          s += '-';
+        }
+        s+= 'r';
+      }
+      return s;
+    };
+    that.getName = function(){
+      return that.says() + ' ' + spec.name + ' ' + that.says();
+    };
+    return that;
+  };
+  var myCat = cat({name: 'Henrietta'});
+  test.same(myCat.getName(), 'meow Henrietta meow');
+  test.same(myCat.says(), 'meow');
+
+  var coolcat = function(spec){
+    var that = cat(spec);
+    var superGetName = that.superior('getName');
+    that.getName = function(n){
+      return 'like ' + superGetName() + ' baby';
+    };
+    return that;
+  };
+  var myCoolcat = coolcat({name: 'Bix'});
+  test.same(myCoolcat.getName(), 'like meow Bix meow baby');
+  test.done();
+};
