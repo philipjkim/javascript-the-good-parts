@@ -10,6 +10,10 @@ Unit tests using sample codes from JavaScript: the Good Parts
     $ npm install
     $ jake
 
+Install [Jake](https://github.com/mde/jake) if not installed.
+
+    $ sudo npm install -g jake
+
 ## References
 
 * [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
