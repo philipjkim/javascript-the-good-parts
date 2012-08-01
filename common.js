@@ -20,3 +20,7 @@ Object.method('superior', function(name){
     return method.apply(that, arguments);
   };
 });
+
+Object.method('isArray', function(){
+  return Object.prototype.toString.call(this) === '[object Array]';
+});
