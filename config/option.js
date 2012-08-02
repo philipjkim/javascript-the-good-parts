@@ -1,4 +1,5 @@
 var options = {
+  node: true,
   vars: true,
-  node: true
+  maxlen: 200
 };
