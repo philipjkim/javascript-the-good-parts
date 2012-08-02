@@ -198,7 +198,7 @@ exports['regexp.exec'] = function(test) {
   var tags = /[^<>]+|<(\/?)([A-Za-z]+)([^<>]*)>/g;
   var a;
   var result = [];
-  while ((a = tags.exec(text))) {
+  while ((a = tags.exec(text)) !== null) {
     var tag = {};
     tag.fulltext = a[0];
     tag.name = a[1];
