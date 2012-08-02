@@ -222,3 +222,127 @@ exports['regexp.test'] = function(test) {
   test.ok(b);
   test.done();
 };
+
+exports['string.charAt'] = function(test) {
+  var name = 'Curly';
+  test.same(name.charAt(0), 'C');
+  test.done();
+};
+
+exports['string.charCodeAt'] = function(test) {
+  var name = 'Curly';
+  test.same(name.charCodeAt(0), 67);
+  test.done();
+};
+
+exports['string.concat'] = function(test) {
+  test.same('C'.concat('a', 't'), 'Cat');
+  test.done();
+};
+
+exports['string.indexOf'] = function(test) {
+  var text = 'Mississippi';
+  test.same(text.indexOf('ss'), 2);
+  test.same(text.indexOf('ss', 3), 5);
+  test.same(text.indexOf('ss', 6), -1);
+  test.done();
+};
+
+exports['string.lastIndexOf'] = function(test) {
+  var text = 'Mississippi';
+  test.same(text.lastIndexOf('ss'), 5);
+  test.same(text.lastIndexOf('ss', 3), 2);
+  test.same(text.lastIndexOf('ss', 6), 5);
+  test.done();
+};
+
+exports['string.localeCompare'] = function(test) {
+  var m = ['AAA', 'A', 'aa', 'a', 'Aa', 'aaa'];
+  m.sort(function(a, b) {
+    return a.localeCompare(b);
+  });
+  // The following assertion could not pass in some locale.
+  test.same(m, ['A', 'AAA', 'Aa', 'a', 'aa', 'aaa']);
+  test.done();
+};
+
+exports['string.match'] = function(test) {
+  var text = '<html><body bgcolor=linen><p>' +
+    'This is <b>bold<\/b>!<\/p><\/body><\/html>';
+  var tags = /[^<>]+|<(\/?)([A-Za-z]+)([^<>]*)>/g;
+  var a = text.match(tags);
+  test.same(a[0], '<html>');
+  test.same(a[3], 'This is ');
+  test.same(a[10], '</html>');
+  test.done();
+};
+
+exports['string.replace'] = function(test) {
+  var result = 'mother_in_law'.replace(/_/g, '-');
+  test.same(result, 'mother-in-law');
+
+  var oldAreaCode = /\((\d{3})\)/g;
+  var p = '(555)666-1212'.replace(oldAreaCode, '$1-');
+  test.same(p, '555-666-1212');
+
+  String.method('entityify', (function() {
+    var character = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '&': '&amp;',
+      '"': '&quot;'
+    };
+    return function() {
+      return this.replace(/[<>&"]/g, function(c) {
+        return character[c];
+      });
+    };
+  } ()));
+  test.same('<&>'.entityify(), '&lt;&amp;&gt;');
+  test.done();
+};
+
+exports['string.search'] = function(test) {
+  var text = 'and in it he says "Any damn fool could';
+  test.same(text.search(/["']/), 18);
+  test.done();
+};
+
+exports['string.slice'] = function(test) {
+  var text = 'and in it he says "Any damn fool could';
+  test.same(text.slice(18), '"Any damn fool could');
+  test.same(text.slice(0, 3), 'and');
+  test.same(text.slice(-5), 'could');
+  test.same(text.slice(19, 32), 'Any damn fool');
+  test.done();
+};
+
+exports['string.split'] = function(test) {
+  var digit = '0123456789';
+  test.same(digit.split('', 5), ['0', '1', '2', '3', '4']);
+  var ip = '192.168.1.0';
+  test.same(ip.split('.'), ['192', '168', '1', '0']);
+  var t = '|a|b|c|';
+  test.same(t.split('|'), ['', 'a', 'b', 'c', '']);
+  var text = 'last,  first ,middle';
+  test.same(text.split(/\s*,\s*/), ['last', 'first', 'middle']);
+  test.same(text.split(/\s*(,)\s*/), ['last', ',', 'first', ',', 'middle']);
+  test.done();
+};
+
+exports['string.toLowerCase'] = function(test) {
+  var name = 'Curly';
+  test.same(name.toLowerCase(), 'curly');
+  test.done();
+};
+
+exports['string.toUpperCase'] = function(test) {
+  var name = 'Curly';
+  test.same(name.toUpperCase(), 'CURLY');
+  test.done();
+};
+
+exports['string.fromCharCode'] = function(test) {
+  test.same(String.fromCharCode(67, 97, 116), 'Cat');
+  test.done();
+};
