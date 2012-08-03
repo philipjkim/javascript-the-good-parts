@@ -9,13 +9,13 @@ Unit tests using sample codes from JavaScript: the Good Parts
    $ git clone git://github.com/philipjkim/javascript-the-good-parts.git
    $ cd javascript-the-good-parts
    $ npm install
-   $ jake
+   $ cake run
    ```
 
-Install [Jake](https://github.com/mde/jake) if not installed.
+Install [CoffeeScript](http://coffeescript.org/) if not installed.
 
    ```bash
-   $ sudo npm install -g jake
+   $ sudo npm install -g coffee-script
    ```
 
 ## References
@@ -24,3 +24,4 @@ Install [Jake](https://github.com/mde/jake) if not installed.
 * [Nodeunit](https://github.com/caolan/nodeunit/)
 * [Nodelint](https://github.com/tav/nodelint)
 * [JSLint options](http://www.jslint.com/lint.html#options)
+* [cake.coffee](http://coffeescript.org/documentation/docs/cake.html)
