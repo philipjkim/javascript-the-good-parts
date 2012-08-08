@@ -22,6 +22,5 @@ Install [CoffeeScript](http://coffeescript.org/) if not installed.
 
 * [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
 * [Nodeunit](https://github.com/caolan/nodeunit/)
-* [Nodelint](https://github.com/tav/nodelint)
-* [JSLint options](http://www.jslint.com/lint.html#options)
 * [cake.coffee](http://coffeescript.org/documentation/docs/cake.html)
+* [node-jshint](https://github.com/jshint/node-jshint/)
