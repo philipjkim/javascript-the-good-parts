@@ -44,7 +44,7 @@ exports.length = function(test){
   test.done();
 };
 
-exports.delete = function(test){
+exports['delete'] = function(test){
   delete numbers[2];
   test.same(numbers.length, 5);
   test.same(numbers[2], undefined);

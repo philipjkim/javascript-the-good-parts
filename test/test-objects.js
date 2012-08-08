@@ -109,7 +109,7 @@ exports.enumeration = function(test){
   test.done();
 };
 
-exports.delete = function(test){
+exports['delete'] = function(test){
   test.same(another_stooge.nickname, "Uncle Bob");
   delete another_stooge.nickname;
   test.same(another_stooge.nickname, "Curly");
