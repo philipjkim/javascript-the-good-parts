@@ -4,8 +4,12 @@
   "private": false,
   "dependencies": {
     "jshint": "*",
-    "nodeunit": "*",
     "underscore.string": "*"
+  },
+  "devDependencies": {
+    "nodeunit": "*",
+    "mocha": "*",
+    "should": "*"
   },
   "repository": {
     "type": "git",
