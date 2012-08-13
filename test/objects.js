@@ -101,7 +101,7 @@ describe('object', function() {
     var name;
     for (name in another_stooge) {
       if (typeof another_stooge[name] !== 'function') {
-        another_stooge[name].should.be.ok;
+        should.exist(another_stooge[name]);
       }
     }
   });
