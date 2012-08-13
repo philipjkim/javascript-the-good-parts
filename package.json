@@ -14,5 +14,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/philipjkim/javascript-the-good-parts"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha -R spec test/*.js"
   }
 }
