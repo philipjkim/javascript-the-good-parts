@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test';
 
 var should = require('should');
 
-describe('regex#exec()', function() {
+describe('regular expression', function() {
   it('should parse a URL as expected', function() {
     var parseUrl = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
     var url = 'http://www.ora.com:80/goodparts?q#fragment';
@@ -24,9 +24,7 @@ describe('regex#exec()', function() {
     map.query.should.equal('q');
     map.hash.should.equal('fragment');
   });
-});
 
-describe('regex#test()', function() {
   it('should return if a value is matched to number type', function() {
     var parseNumber = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
 
