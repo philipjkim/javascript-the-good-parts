@@ -22,6 +22,6 @@ For linting, install [CoffeeScript](http://coffeescript.org/) if not installed.
 ## References
 
 * [JavaScript: The Good Parts](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742)
-* [Mocha](http://visionmedia.github.com/mocha/)
+* [Mocha](http://mochajs.org/)
 * [cake.coffee](http://coffeescript.org/documentation/docs/cake.html)
 * [node-jshint](https://github.com/jshint/node-jshint/)
